@@ -32,22 +32,23 @@ FoundationGenerator.prototype.askFor = function askFor() {
 
   console.log(welcome);
 
-  //var prompts = [{
-    //name: 'someOption',
-    //message: 'Would you like to enable this option?',
-    //default: 'Y/n',
-    //warning: 'Yes: Enabling this will be totally awesome!'
-  //}];
-
-  //this.prompt(prompts, function (err, props) {
-    //if (err) {
-      //return this.emit('error', err);
-    //}
-
-    //this.someOption = (/y/i).test(props.someOption);
-
-  //}.bind(this));
-  cb();
+  var prompts = [{
+    name: 'projectName',
+    message: 'Enter project name:',
+    default: ''
+  },{
+    name: 'coffeeScript',
+    message: 'Gruntfile as CoffeeScript ☕:',
+    default: 'Yes'
+  }];
+  this.prompt(prompts, function (err, props) {
+    if (err) {
+      return this.emit('error', err);
+    }
+    this.projectName = (/y/i).test(props.projectName);
+    this.coffeeScript = (/y/i).test(props.coffeeScript);
+    cb();
+  }.bind(this));
 };
 
 FoundationGenerator.prototype.app = function app() {
@@ -56,16 +57,20 @@ FoundationGenerator.prototype.app = function app() {
   this.mkdir('app/scripts');
   this.mkdir('app/styles');
   this.copy('404.html','app/404.html');
-  this.copy('index.html','app/index.html');
+  this.template('_index.html','app/index.html');
 };
 
 FoundationGenerator.prototype.gruntfile = function gruntfile() {
-  this.template('Gruntfile.coffee');
-}
+  if(this.coffeeScript === 'n') {
+    this.template('_Gruntfile.js','Gruntfile.js');
+  }else{
+    this.template('_Gruntfile.coffee','Gruntfile.coffee');
+  }
+};
 
 FoundationGenerator.prototype.projectfiles = function projectfiles() {
-  this.copy('_component.json', 'component.json');
-  this.copy('_package.json', 'package.json');
+  this.template('_component.json', 'component.json');
+  this.template('_package.json', 'package.json');
   this.copy('gitignore', '.gitignore');
   this.copy('gitattributes', '.gitattributes');
   this.copy('editorconfig', '.editorconfig');
