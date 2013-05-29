@@ -1,0 +1,47 @@
+{
+  "name": "generator-foundation-ext",
+  "version": "0.0.1",
+  "description": "Another foundation generator that likes coffee.",
+  "keywords": [
+    "beta",
+    "yeoman-generator",
+    "coffeescript",
+    "foundation",
+    "zurb"
+  ],
+  "homepage": "https://github.com/jamesakers/generator-foundation-ext",
+  "bugs": "https://github.com/jamesakers/generator-foundation-ext/issues",
+  "author": {
+    "name": "James Akers",
+    "url": "https://github.com/jamesakers"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesakers/generator-foundation-ext.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.10.2"
+  },
+  "devDependencies": {
+    "mocha": "~1.9.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "readme": "# Generator foundation ext\n[![Build Status](https://secure.travis-ci.org/jamesakers/generator-foundation-ext.png?branch=master)](https://travis-ci.org/jamesakers/generator-foundation-ext)\n\nA generator for Yeoman.\n\n## Getting started\n- Make sure you have [yo](https://github.com/yeoman/yo) installed:\n    `npm install -g yo`\n- Install the generator **locally**: `npm install generator-foundation-ext`\n- Run: `yo foundation-ext`\n\n## License\n[MIT License](http://en.wikipedia.org/wiki/MIT_License)\n",
+  "readmeFilename": "README.md",
+  "_id": "generator-foundation-ext@0.0.1",
+  "_from": "/Users/james/_development/node_modules/generator-foundation-ext",
+  "dist": {
+    "shasum": "85f0ce5de75e6811c9a0d474f3d452b67c5a0715"
+  }
+}
