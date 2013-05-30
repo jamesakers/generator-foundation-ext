@@ -10,19 +10,18 @@
   };
 
   module.exports = function(grunt) {
-    var e, yeomanConfig;
+    var e, yeoman;
 
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-    yeomanConfig = {
+    yeoman = {
       app: 'app',
       dist: 'dist'
     };
     try {
-      yeomanConfig.app = require('./component.json').appPath || yeomanConfig.app;
+      yeoman.app = require('./bower.json').appPath || yeoman.app;
     } catch (_error) {
       e = _error;
     }
-    console.log(yeomanConfig);
     grunt.initConfig({
       yeoman: yeomanConfig,
       watch: {
@@ -39,7 +38,7 @@
           tasks: ['compass']
         },
         livereload: {
-          files: ['<%%= yeoman.app %>/*.html', '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css', '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js', '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'],
+          files: ['<%%= yeoman.app %>/*.html', '{.tmp,<%%= yeoman.app %>}/styles/{,*/}*.css', '{.tmp,<%%= yeoman.app %>}/scripts/{,*/}*.js', '<%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'],
           tasks: ['livereload']
         }
       },
@@ -65,7 +64,7 @@
       },
       open: {
         server: {
-          path: 'http://<%= connect.options.hostname %>:<%= connect.options.port %>'
+          path: 'http://<%%= connect.options.hostname %>:<%%= connect.options.port %>'
         }
       },
       clean: {
@@ -73,7 +72,7 @@
           files: [
             {
               dot: true,
-              src: ['.tmp', '<%= yeoman.dist %>/*', '!<%= yeoman.dist %>/.git*']
+              src: ['.tmp', '<%%= yeoman.dist %>/*', '!<%%= yeoman.dist %>/.git*']
             }
           ]
         },
@@ -83,14 +82,14 @@
         options: {
           jshintrc: '.jshintrc'
         },
-        all: ['<%= yeoman.app %>/scripts/{,*/}*.js']
+        all: ['<%%= yeoman.app %>/scripts/{,*/}*.js']
       },
       coffee: {
         dist: {
           files: [
             {
               expand: true,
-              cwd: '<%= yeoman.app %>/scripts',
+              cwd: '<%%= yeoman.app %>/scripts',
               src: '{,*/}*.coffee',
               dest: '.tmp/scripts',
               ext: '.js'
@@ -101,7 +100,7 @@
           files: [
             {
               expand: true,
-              cwd: '<%= yeoman.app %>/scripts',
+              cwd: '<%%= yeoman.app %>/scripts',
               src: '{,*/}*.coffee',
               dest: '.tmp/scripts',
               ext: '.js'
@@ -112,11 +111,11 @@
       compass: {
         options: {
           require: 'zurb-foundation',
-          sassDir: '<%= yeoman.app %>/styles',
+          sassDir: '<%%= yeoman.app %>/styles',
           cssDir: '.tmp/styles',
-          javascriptsDir: '<%= yeoman.app %>/scripts',
-          fontsDir: '<%= yeoman.app %>/styles/fonts',
-          importPath: '<%= yeoman.app %>/components',
+          javascriptsDir: '<%%= yeoman.app %>/scripts',
+          fontsDir: '<%%= yeoman.app %>/styles/fonts',
+          importPath: '<%%= yeoman.app %>/components',
           relativeAssets: true
         },
         server: {
@@ -128,21 +127,21 @@
       concat: {
         dist: {
           files: {
-            '<%= yeoman.dist %>/scripts/scripts.js': ['.tmp/scripts/{,*/}*.js', '<%= yeoman.app %>/scripts/{,*/}*.js']
+            '<%%= yeoman.dist %>/scripts/scripts.js': ['.tmp/scripts/{,*/}*.js', '<%%= yeoman.app %>/scripts/{,*/}*.js']
           }
         }
       },
       useminPrepare: {
-        html: '<%= yeoman.app %>/index.html',
+        html: '<%%= yeoman.app %>/index.html',
         options: {
-          dest: '<%= yeoman.dist %>'
+          dest: '<%%= yeoman.dist %>'
         }
       },
       usemin: {
-        html: ['<%= yeoman.dist %>/{,*/}*.html'],
-        css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+        html: ['<%%= yeoman.dist %>/{,*/}*.html'],
+        css: ['<%%= yeoman.dist %>/styles/{,*/}*.css'],
         options: {
-          dirs: ['<%= yeoman.dist %>']
+          dirs: ['<%%= yeoman.dist %>']
         }
       },
       imagemin: {
@@ -150,9 +149,9 @@
           files: [
             {
               expand: true,
-              cwd: '<%= yeoman.app %>/images',
+              cwd: '<%%= yeoman.app %>/images',
               src: '{,*/}*.{png,jpg,jpeg}',
-              dest: '<%= yeoman.dist %>/images'
+              dest: '<%%= yeoman.dist %>/images'
             }
           ]
         }
@@ -160,7 +159,7 @@
       cssmin: {
         dist: {
           files: {
-            '<%= yeoman.dist %>/styles/main.css': ['.tmp/styles/{,*/}*.css', '<%= yeoman.app %>/styles/{,*/}*.css']
+            '<%%= yeoman.dist %>/styles/main.css': ['.tmp/styles/{,*/}*.css', '<%%= yeoman.app %>/styles/{,*/}*.css']
           }
         }
       },
@@ -169,55 +168,23 @@
           files: [
             {
               expand: true,
-              cwd: '<%= yeoman.app %>',
+              cwd: '<%%= yeoman.app %>',
               src: ['*.html', 'views/*.html'],
-              dest: '<%= yeoman.dist %>'
+              dest: '<%%= yeoman.dist %>'
             }
           ]
         }
       },
       cdnify: {
         dist: {
-          html: ['<%= yeoman.dist %>/*.html']
-        }
-      },
-      ngmin: {
-        dist: {
-          files: [
-            {
-              expand: true,
-              cwd: '<%= yeoman.dist %>/scripts',
-              src: '*.js',
-              dest: '<%= yeoman.dist %>/scripts'
-            }
-          ]
+          html: ['<%%= yeoman.dist %>/*.html']
         }
       },
       uglify: {
         dist: {
           files: {
-            '<%= yeoman.dist %>/scripts/scripts.js': ['<%= yeoman.dist %>/scripts/scripts.js']
+            '<%%= yeoman.dist %>/scripts/scripts.js': ['<%%= yeoman.dist %>/scripts/scripts.js']
           }
-        }
-      },
-      rev: {
-        dist: {
-          files: {
-            src: ['<%= yeoman.dist %>/scripts/{,*/}*.js', '<%= yeoman.dist %>/styles/{,*/}*.css', '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}', '<%= yeoman.dist %>/styles/fonts/*']
-          }
-        }
-      },
-      copy: {
-        dist: {
-          files: [
-            {
-              expand: true,
-              dot: true,
-              cwd: '<%= yeoman.app %>',
-              dest: '<%= yeoman.dist %>',
-              src: ['*.{ico,txt}', '.htaccess', 'components/**/*', 'images/{,*/}*.{gif,webp}', 'styles/fonts/*']
-            }
-          ]
         }
       }
     });

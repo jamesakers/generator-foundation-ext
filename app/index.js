@@ -3,7 +3,7 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 
-var FoundationGenerator = module.exports = function FoundationGenerator(args, options, config) {
+var Generator = module.exports = function Generator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
   this.on('end', function () {
@@ -13,9 +13,9 @@ var FoundationGenerator = module.exports = function FoundationGenerator(args, op
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
-util.inherits(FoundationGenerator, yeoman.generators.NamedBase);
+util.inherits(Generator, yeoman.generators.NamedBase);
 
-FoundationGenerator.prototype.askFor = function askFor() {
+Generator.prototype.askFor = function askFor() {
   var cb = this.async();
 
   // welcome message
@@ -33,43 +33,54 @@ FoundationGenerator.prototype.askFor = function askFor() {
   console.log(welcome);
 
   var prompts = [{
-    name: 'projectName',
-    message: 'Enter project name:',
-    default: ''
+    name: 'siteName',
+    message: 'Enter site name: '
   },{
     name: 'coffeeScript',
-    message: 'Gruntfile as CoffeeScript ☕:',
-    default: 'Yes'
+    message: 'Gruntfile as CoffeeScript ☕ ?: ',
+    default: 'Y/n'
+  },{
+    name: 'templateName',
+    message: 'Choose Foundation Template: ',
+    default: 'welcome'
   }];
   this.prompt(prompts, function (err, props) {
     if (err) {
       return this.emit('error', err);
     }
-    this.projectName = (/y/i).test(props.projectName);
+    this.siteName = props.siteName ;
     this.coffeeScript = (/y/i).test(props.coffeeScript);
+    this.templateName = props.templateName;
     cb();
   }.bind(this));
 };
 
-FoundationGenerator.prototype.app = function app() {
+Generator.prototype.app = function app() {
   this.mkdir('app');
-  this.mkdir('app/components');
-  this.mkdir('app/scripts');
-  this.mkdir('app/styles');
+  this.mkdir('app/js');
+  this.mkdir('app/sass');
+  this.mkdir('app/css');
   this.copy('404.html','app/404.html');
-  this.template('_index.html','app/index.html');
+  this.copy('robots.txt','app/robots.txt');
+  this.copy('humans.txt','app/humans.txt');
+  this.indexContent = this.read('./themes/_'+ this.templateName +'.html');
+  this.template('index.html','app/index.html')
 };
 
-FoundationGenerator.prototype.gruntfile = function gruntfile() {
-  if(this.coffeeScript === 'n') {
-    this.template('_Gruntfile.js','Gruntfile.js');
+//Generator.prototype.foundation = function foundation() {
+  //this.copy('../../node_modules/foundation/js/*', 'app/js/');
+//};
+
+Generator.prototype.gruntfile = function gruntfile() {
+  if(this.coffeeScript) {
+    this.template('Gruntfile.coffee');
   }else{
-    this.template('_Gruntfile.coffee','Gruntfile.coffee');
+    this.template('Gruntfile.js');
   }
 };
 
-FoundationGenerator.prototype.projectfiles = function projectfiles() {
-  this.template('_component.json', 'component.json');
+Generator.prototype.projectfiles = function projectfiles() {
+  this.template('_bower.json', 'bower.json');
   this.template('_package.json', 'package.json');
   this.copy('gitignore', '.gitignore');
   this.copy('gitattributes', '.gitattributes');

@@ -40,8 +40,8 @@
   "readme": "# Generator foundation ext\n[![Build Status](https://secure.travis-ci.org/jamesakers/generator-foundation-ext.png?branch=master)](https://travis-ci.org/jamesakers/generator-foundation-ext)\n\nA generator for Yeoman.\n\n## Getting started\n- Make sure you have [yo](https://github.com/yeoman/yo) installed:\n    `npm install -g yo`\n- Install the generator **locally**: `npm install generator-foundation-ext`\n- Run: `yo foundation-ext`\n\n## License\n[MIT License](http://en.wikipedia.org/wiki/MIT_License)\n",
   "readmeFilename": "README.md",
   "_id": "generator-foundation-ext@0.0.1",
-  "_from": "/Users/james/_development/node_modules/generator-foundation-ext",
+  "_from": "/Users/james/_development/node_packages/generator-foundation-ext",
   "dist": {
-    "shasum": "85f0ce5de75e6811c9a0d474f3d452b67c5a0715"
+    "shasum": "d0b42143b586e2d594817fd20379569dc1123315"
   }
 }

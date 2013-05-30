@@ -6,11 +6,11 @@ module.exports = (grunt) ->
   # load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
   #yeomanConfig = app: 'app', dist: 'dist'
-  yeoman = app: 'app', dist: 'dist'
+  yeomanConfig = app: 'app', dist: 'dist'
 
   try
     #yeomanConfig.app = require('./component.json').appPath || yeomanConfig.app
-    yeoman.app = require('./component.json').appPath || yeoman.app
+    yeomanConfig.app = require('./bower.json').appPath || yeomanConfig.app
   catch e
     #ignore
 
@@ -18,19 +18,19 @@ module.exports = (grunt) ->
     yeoman: yeomanConfig
     watch:
       coffee:
-        files: ['<%%= yeoman.app %>/scripts/{,*/}*.coffee']
+        files: ['<%%= yeoman.app %>/js/{,*/}*.coffee']
         tasks: ['coffee:dist']
       coffeeTest:
         files: ['test/spec/{,*/}*.coffee']
         tasks: ['coffee:test']
       compass:
-        files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}']
+        files: ['<%%= yeoman.app %>/sass/{,*/}*.{scss,sass}']
         tasks: ['compass']
       livereload:
         files: [
           '<%%= yeoman.app %>/*.html',
-          '{.tmp,<%%= yeoman.app %>}/styles/{,*/}*.css',
-          '{.tmp,<%%= yeoman.app %>}/scripts/{,*/}*.js',
+          '{.tmp,<%%= yeoman.app %>}/css/{,*/}*.css',
+          '{.tmp,<%%= yeoman.app %>}/js/{,*/}*.js',
           '<%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
         tasks: ['livereload']
@@ -43,7 +43,7 @@ module.exports = (grunt) ->
           middleware: (connect) -> [
             lrSnippet,
             folderMount(connect, '.tmp'),
-            folderMount(connect, yeomanConfig.app)
+            folderMount(connect, yeoman.app)
           ]
       test:
         options:
@@ -70,32 +70,32 @@ module.exports = (grunt) ->
       options:
         jshintrc: '.jshintrc'
       all: [
-        '<%%= yeoman.app %>/scripts/{,*/}*.js'
+        '<%%= yeoman.app %>/js/{,*/}*.js'
       ]
     coffee:
       dist:
         files: [
           expand: true
-          cwd: '<%%= yeoman.app %>/scripts'
+          cwd: '<%%= yeoman.app %>/js'
           src: '{,*/}*.coffee'
-          dest: '.tmp/scripts'
+          dest: '.tmp/js'
           ext: '.js'
         ]
       test:
         files: [
           expand: true
-          cwd: '<%%= yeoman.app %>/scripts'
+          cwd: '<%%= yeoman.app %>/javascript'
           src: '{,*/}*.coffee'
-          dest: '.tmp/scripts'
+          dest: '.tmp/js'
           ext: '.js'
         ]
     compass:
       options:
         require: 'zurb-foundation'
-        sassDir: '<%%= yeoman.app %>/styles'
-        cssDir: '.tmp/styles'
-        javascriptsDir: '<%%= yeoman.app %>/scripts'
-        fontsDir: '<%%= yeoman.app %>/styles/fonts'
+        sassDir: '<%%= yeoman.app %>/sass'
+        cssDir: '.tmp/css'
+        javascriptsDir: '<%%= yeoman.app %>/js'
+        fontsDir: '<%%= yeoman.app %>/css/fonts'
         importPath: '<%%= yeoman.app %>/components'
         relativeAssets: true
       server:
@@ -104,9 +104,9 @@ module.exports = (grunt) ->
     concat:
       dist:
         files:
-          '<%%= yeoman.dist %>/scripts/scripts.js': [
-            '.tmp/scripts/{,*/}*.js',
-            '<%%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%%= yeoman.dist %>/js/javascripts.js': [
+            '.tmp/js/{,*/}*.js',
+            '<%%= yeoman.app %>/js/{,*/}*.js'
           ]
     useminPrepare:
       html: '<%%= yeoman.app %>/index.html'
@@ -114,7 +114,7 @@ module.exports = (grunt) ->
         dest: '<%%= yeoman.dist %>'
     usemin:
       html: ['<%%= yeoman.dist %>/{,*/}*.html']
-      css: ['<%%= yeoman.dist %>/styles/{,*/}*.css']
+      css: ['<%%= yeoman.dist %>/css/{,*/}*.css']
       options:
         dirs: ['<%%= yeoman.dist %>']
     imagemin:
@@ -128,9 +128,9 @@ module.exports = (grunt) ->
     cssmin:
       dist:
         files:
-          '<%%= yeoman.dist %>/styles/main.css': [
-            '.tmp/styles/{,*/}*.css',
-            '<%%= yeoman.app %>/styles/{,*/}*.css'
+          '<%%= yeoman.dist %>/css/main.css': [
+            '.tmp/css/{,*/}*.css',
+            '<%%= yeoman.app %>/css/{,*/}*.css'
           ]
     htmlmin:
       dist:
@@ -143,44 +143,12 @@ module.exports = (grunt) ->
     cdnify:
       dist:
         html: ['<%%= yeoman.dist %>/*.html']
-    ngmin:
-      dist:
-        files: [
-          expand: true
-          cwd: '<%%= yeoman.dist %>/scripts'
-          src: '*.js'
-          dest: '<%%= yeoman.dist %>/scripts'
-        ]
     uglify:
       dist:
         files:
-          '<%%= yeoman.dist %>/scripts/scripts.js': [
-            '<%%= yeoman.dist %>/scripts/scripts.js'
+          '<%%= yeoman.dist %>/js/scripts.js': [
+            '<%%= yeoman.dist %>/js/scripts.js'
           ]
-    rev:
-      dist:
-        files:
-          src: [
-            '<%%= yeoman.dist %>/scripts/{,*/}*.js',
-            '<%%= yeoman.dist %>/styles/{,*/}*.css',
-            '<%%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%%= yeoman.dist %>/styles/fonts/*'
-          ]
-    copy:
-      dist:
-        files: [
-          expand: true
-          dot: true
-          cwd: '<%%= yeoman.app %>'
-          dest: '<%%= yeoman.dist %>'
-          src: [
-            '*.{ico,txt}',
-            '.htaccess',
-            'components/**/*',
-            'images/{,*/}*.{gif,webp}',
-            'styles/fonts/*'
-          ]
-        ]
 
   grunt.renameTask 'regarde', 'watch'
 
