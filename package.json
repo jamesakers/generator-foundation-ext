@@ -9,7 +9,7 @@
     "coffeescript",
     "foundation",
     "front-end",
-    "app"
+    "app",
     "zurb"
   ],
   "homepage": "https://github.com/jamesakers/generator-foundation-ext",
