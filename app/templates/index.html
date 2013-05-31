@@ -4,31 +4,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>Foundation 4</title>
+  <title><%= siteName %></title>
+  <!-- build:css css/app.css -->
   <link rel="stylesheet" href="css/app.css" />
-  <script src="js/vendor/custom.modernizr.js"></script>
+  <!-- endbuild -->
+  <!-- build:js js/scripts.js -->
+  <script src="components/foundation/js/vendor/custom.modernizr.js"></script>
+  <script src="components/foundation/js/vendor/jquery.js"></script>
+  <script src="components/foundation/js/vendor/zepto.js"></script>
+  <!-- endbuild -->
 </head>
 <body>
   <%= indexContent %>
-  <script>
-    document.write('<script src=' +
-    ('__proto__' in {} ? 'javascripts/vendor/zepto' : 'javascripts/vendor/jquery') +
-    '.js><\/script>');
-  </script>
-  <script src="js/foundation/foundation.js"></script>
-  <script src="js/foundation/foundation.alerts.js"></script>
-  <script src="js/foundation/foundation.clearing.js"></script>
-  <script src="js/foundation/foundation.cookie.js"></script>
-  <script src="js/foundation/foundation.dropdown.js"></script>
-  <script src="js/foundation/foundation.forms.js"></script>
-  <script src="js/foundation/foundation.joyride.js"></script>
-  <script src="js/foundation/foundation.magellan.js"></script>
-  <script src="js/foundation/foundation.orbit.js"></script>
-  <script src="js/foundation/foundation.placeholder.js"></script>
-  <script src="js/foundation/foundation.reveal.js"></script>
-  <script src="js/foundation/foundation.section.js"></script>
-  <script src="js/foundation/foundation.tooltips.js"></script>
-  <script src="js/foundation/foundation.topbar.js"></script>
+  <!-- build:js js/foundation.js -->
+  <script src="components/foundation/js/foundation/foundation.js"></script>
+  <script src="components/foundation/js/foundation/foundation.alerts.js"></script>
+  <script src="components/foundation/js/foundation/foundation.clearing.js"></script>
+  <script src="components/foundation/js/foundation/foundation.cookie.js"></script>
+  <script src="components/foundation/js/foundation/foundation.dropdown.js"></script>
+  <script src="components/foundation/js/foundation/foundation.forms.js"></script>
+  <script src="components/foundation/js/foundation/foundation.joyride.js"></script>
+  <script src="components/foundation/js/foundation/foundation.magellan.js"></script>
+  <script src="components/foundation/js/foundation/foundation.orbit.js"></script>
+  <script src="components/foundation/js/foundation/foundation.placeholder.js"></script>
+  <script src="components/foundation/js/foundation/foundation.reveal.js"></script>
+  <script src="components/foundation/js/foundation/foundation.section.js"></script>
+  <script src="components/foundation/js/foundation/foundation.tooltips.js"></script>
+  <script src="components/foundation/js/foundation/foundation.topbar.js"></script>
+  <!-- endbuild -->
   <script>
     $(document).foundation();
   </script>

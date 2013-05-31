@@ -1,6 +1,7 @@
 'use strict';
-var util = require('util');
-var path = require('path');
+var util   = require('util');
+var path   = require('path');
+var fs     = require('fs');
 var yeoman = require('yeoman-generator');
 
 var Generator = module.exports = function Generator(args, options, config) {
@@ -15,6 +16,13 @@ var Generator = module.exports = function Generator(args, options, config) {
 
 util.inherits(Generator, yeoman.generators.NamedBase);
 
+Generator.prototype.getTemplates = function getTemplates() {
+  var fs = require('fs');
+  var files = fs.readdirSync(path.join(__dirname,'templates','themes'));
+  var i, n = files.length; for (i = 0; i < n; ++i) { files[i] = files[i].replace(/\.[^.]+$/g,"").replace(/\_/,""); };
+  this.templateList = files.join('|');
+}
+
 Generator.prototype.askFor = function askFor() {
   var cb = this.async();
 
@@ -22,14 +30,13 @@ Generator.prototype.askFor = function askFor() {
   var welcome =
   '\n     _-----_' +
   '\n    |       |' +
-  '\n    |' + '--(o)--'.red + '|   .--------------------------.' +
-  '\n   `---------´  |    ' + 'Welcome to Yeoman,'.yellow.bold + '    |' +
-  '\n    ' + '( '.yellow + '_' + '´U`'.yellow + '_' + ' )'.yellow + '   |   ' + 'ladies and gentlemen!'.yellow.bold + '  |' +
-  '\n    /___A___\\   \'__________________________\'' +
+  '\n    |' + '--(o)--'.red + '|   .----------------------------.' +
+  '\n   `---------´  |        ' + 'Yeoman says,'.yellow.bold + '         |' +
+  '\n    ' + '( '.yellow + '_' + '´U`'.yellow + '_' + ' )'.yellow + '   | ' + 'enjoy Foundation v4 by Zurb '.yellow.bold + '|' +
+  '\n    /___A___\\   \'_____________________________\'' +
   '\n     |  ~  |'.yellow +
   '\n   __' + '\'.___.\''.yellow + '__' +
   '\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n';
-
   console.log(welcome);
 
   var prompts = [{
@@ -41,9 +48,10 @@ Generator.prototype.askFor = function askFor() {
     default: 'Y/n'
   },{
     name: 'templateName',
-    message: 'Choose Foundation Template: ',
+    message: 'Choose Foundation Template - [http://foundation.zurb.com/templates.php ' + this.templateList + ']: ',
     default: 'welcome'
   }];
+
   this.prompt(prompts, function (err, props) {
     if (err) {
       return this.emit('error', err);
@@ -58,8 +66,6 @@ Generator.prototype.askFor = function askFor() {
 Generator.prototype.app = function app() {
   this.mkdir('app');
   this.mkdir('app/js');
-  this.mkdir('app/sass');
-  this.mkdir('app/css');
   this.copy('404.html','app/404.html');
   this.copy('robots.txt','app/robots.txt');
   this.copy('humans.txt','app/humans.txt');
@@ -67,9 +73,15 @@ Generator.prototype.app = function app() {
   this.template('index.html','app/index.html')
 };
 
-//Generator.prototype.foundation = function foundation() {
-  //this.copy('../../node_modules/foundation/js/*', 'app/js/');
-//};
+Generator.prototype.appSass = function appSass() {
+  this.mkdir('app/sass');
+  this.copy('sass/app.scss','app/sass/app.scss');
+  this.copy('sass/_settings.scss','app/sass/_settings.scss');
+};
+
+Generator.prototype.appCss = function appCss() {
+  this.mkdir('app/css');
+};
 
 Generator.prototype.gruntfile = function gruntfile() {
   if(this.coffeeScript) {
@@ -79,11 +91,15 @@ Generator.prototype.gruntfile = function gruntfile() {
   }
 };
 
-Generator.prototype.projectfiles = function projectfiles() {
-  this.template('_bower.json', 'bower.json');
-  this.template('_package.json', 'package.json');
-  this.copy('gitignore', '.gitignore');
-  this.copy('gitattributes', '.gitattributes');
-  this.copy('editorconfig', '.editorconfig');
-  this.copy('jshintrc', '.jshintrc');
+Generator.prototype.projectFiles = function projectFiles() {
+  this.template('_bower.json'   , 'bower.json');
+  this.template('_package.json' , 'package.json');
+};
+
+Generator.prototype.configs = function configs() {
+  this.copy('configs/bowerrc'       , '.bowerrc');
+  this.copy('configs/gitignore'     , '.gitignore');
+  this.copy('configs/gitattributes' , '.gitattributes');
+  this.copy('configs/editorconfig'  , '.editorconfig');
+  this.copy('configs/jshintrc'      , '.jshintrc');
 };

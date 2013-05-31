@@ -3,12 +3,5 @@
   "version": "0.0.1",
   "dependencies": {
     "foundation": "~4.0.0"
-  },
-  "install" : {
-    "path" : {
-      "css": "app/css",
-      "js": "app/js",
-      "scss": "app/scss"
-    }
   }
 }

@@ -23,10 +23,10 @@
       e = _error;
     }
     grunt.initConfig({
-      yeoman: yeomanConfig,
+      yeoman: yeoman,
       watch: {
         coffee: {
-          files: ['<%%= yeoman.app %>/scripts/{,*/}*.coffee'],
+          files: ['<%%= yeoman.app %>/js/{,*/}*.coffee'],
           tasks: ['coffee:dist']
         },
         coffeeTest: {
@@ -34,11 +34,11 @@
           tasks: ['coffee:test']
         },
         compass: {
-          files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+          files: ['<%%= yeoman.app %>/sass/{,*/}*.{scss,sass}'],
           tasks: ['compass']
         },
         livereload: {
-          files: ['<%%= yeoman.app %>/*.html', '{.tmp,<%%= yeoman.app %>}/styles/{,*/}*.css', '{.tmp,<%%= yeoman.app %>}/scripts/{,*/}*.js', '<%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'],
+          files: ['<%%= yeoman.app %>/*.html', '{.tmp,<%%= yeoman.app %>}/css/{,*/}*.css', '{.tmp,<%%= yeoman.app %>}/js/{,*/}*.js', '<%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'],
           tasks: ['livereload']
         }
       },
@@ -50,7 +50,7 @@
         livereload: {
           options: {
             middleware: function(connect) {
-              return [lrSnippet, folderMount(connect, '.tmp'), folderMount(connect, yeomanConfig.app)];
+              return [lrSnippet, folderMount(connect, '.tmp'), folderMount(connect, yeoman.app)];
             }
           }
         },
@@ -82,16 +82,16 @@
         options: {
           jshintrc: '.jshintrc'
         },
-        all: ['<%%= yeoman.app %>/scripts/{,*/}*.js']
+        all: ['<%%= yeoman.app %>/js/{,*/}*.js']
       },
       coffee: {
         dist: {
           files: [
             {
               expand: true,
-              cwd: '<%%= yeoman.app %>/scripts',
+              cwd: '<%%= yeoman.app %>/js',
               src: '{,*/}*.coffee',
-              dest: '.tmp/scripts',
+              dest: '.tmp/js',
               ext: '.js'
             }
           ]
@@ -100,9 +100,9 @@
           files: [
             {
               expand: true,
-              cwd: '<%%= yeoman.app %>/scripts',
+              cwd: 'test/spec',
               src: '{,*/}*.coffee',
-              dest: '.tmp/scripts',
+              dest: '.tmp/js',
               ext: '.js'
             }
           ]
@@ -111,13 +111,14 @@
       compass: {
         options: {
           require: 'zurb-foundation',
-          sassDir: '<%%= yeoman.app %>/styles',
-          cssDir: '.tmp/styles',
-          javascriptsDir: '<%%= yeoman.app %>/scripts',
-          fontsDir: '<%%= yeoman.app %>/styles/fonts',
+          sassDir: '<%%= yeoman.app %>/sass',
+          cssDir: '.tmp/css',
+          javascriptsDir: '<%%= yeoman.app %>/js',
+          fontsDir: '<%%= yeoman.app %>/css/fonts',
           importPath: '<%%= yeoman.app %>/components',
           relativeAssets: true
         },
+        dist: {},
         server: {
           options: {
             debugInfo: true
@@ -127,7 +128,8 @@
       concat: {
         dist: {
           files: {
-            '<%%= yeoman.dist %>/scripts/scripts.js': ['.tmp/scripts/{,*/}*.js', '<%%= yeoman.app %>/scripts/{,*/}*.js']
+            '<%%= yeoman.dist %>/js/scripts.js': ['.tmp/js/{,*/}*.js', '<%%= yeoman.app %>/components/foundation/js/vendor/{,*/}*.js'],
+            '<%%= yeoman.dist %>/js/foundation.js': ['<%%= yeoman.app %>/components/foundation/js/foundation/{,*/}*.js']
           }
         }
       },
@@ -139,7 +141,7 @@
       },
       usemin: {
         html: ['<%%= yeoman.dist %>/{,*/}*.html'],
-        css: ['<%%= yeoman.dist %>/styles/{,*/}*.css'],
+        css: ['<%%= yeoman.dist %>/css/{,*/}*.css'],
         options: {
           dirs: ['<%%= yeoman.dist %>']
         }
@@ -159,7 +161,7 @@
       cssmin: {
         dist: {
           files: {
-            '<%%= yeoman.dist %>/styles/main.css': ['.tmp/styles/{,*/}*.css', '<%%= yeoman.app %>/styles/{,*/}*.css']
+            '<%%= yeoman.dist %>/css/app.css': ['.tmp/css/{,*/}*.css', '<%%= yeoman.app %>/css/{,*/}*.css']
           }
         }
       },
@@ -175,23 +177,50 @@
           ]
         }
       },
-      cdnify: {
+      ngmin: {
         dist: {
-          html: ['<%%= yeoman.dist %>/*.html']
+          files: [
+            {
+              expand: true,
+              cwd: '<%%= yeoman.dist %>/js',
+              src: '*.js',
+              dest: '<%%= yeoman.dist %>/js'
+            }
+          ]
         }
       },
       uglify: {
         dist: {
           files: {
-            '<%%= yeoman.dist %>/scripts/scripts.js': ['<%%= yeoman.dist %>/scripts/scripts.js']
+            '<%%= yeoman.dist %>/js/scripts.js': ['<%%= yeoman.dist %>/js/scripts.js']
           }
+        }
+      },
+      rev: {
+        dist: {
+          files: {
+            src: ['<%%= yeoman.dist %>/js/{,*/}*.js', '<%%= yeoman.dist %>/css/{,*/}*.css', '<%%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}', '<%%= yeoman.dist %>/css/fonts/*']
+          }
+        }
+      },
+      copy: {
+        dist: {
+          files: [
+            {
+              expand: true,
+              dot: true,
+              cwd: '<%%= yeoman.app %>',
+              dest: '<%%= yeoman.dist %>',
+              src: ['*.{ico,txt}', '.htaccess', 'images/{,*/}*.{gif,webp}', 'css/fonts/*']
+            }
+          ]
         }
       }
     });
     grunt.renameTask('regarde', 'watch');
     grunt.registerTask('server', ['clean:server', 'coffee:dist', 'compass:server', 'livereload-start', 'connect:livereload', 'open', 'watch']);
     grunt.registerTask('test', ['clean:server', 'coffee', 'compass', 'connect:test']);
-    grunt.registerTask('build', ['clean:dist', 'compass:dist', 'livereload-start', 'connect']);
+    grunt.registerTask('build', ['clean:dist', 'jshint', 'test', 'coffee', 'compass:dist', 'useminPrepare', 'concat', 'imagemin', 'cssmin', 'htmlmin', 'copy', 'ngmin', 'uglify', 'rev', 'usemin']);
     return grunt.registerTask('default', ['build']);
   };
 
