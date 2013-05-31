@@ -1,11 +1,15 @@
 {
   "name": "generator-foundation-ext",
-  "version": "0.1.0",
-  "description": "Another foundation generator that likes coffee.",
+  "version": "0.1.1",
+  "description": "Zurb Foundation v4 generator that bootstraps default themes and has a CoffeeScript Gruntfile.",
   "keywords": [
     "yeoman-generator",
+    "scaffold",
+    "framework",
     "coffeescript",
     "foundation",
+    "front-end",
+    "app"
     "zurb"
   ],
   "homepage": "https://github.com/jamesakers/generator-foundation-ext",
@@ -35,12 +39,5 @@
     {
       "type": "MIT"
     }
-  ],
-  "readme": "# Generator foundation ext\n[![Build Status](https://secure.travis-ci.org/jamesakers/generator-foundation-ext.png?branch=master)](https://travis-ci.org/jamesakers/generator-foundation-ext)\n\nA generator for Yeoman.\n\n## Getting started\n- Make sure you have [yo](https://github.com/yeoman/yo) installed:\n    `npm install -g yo`\n- Install the generator **locally**: `npm install generator-foundation-ext`\n- Run: `yo foundation-ext`\n\n## License\n[MIT License](http://en.wikipedia.org/wiki/MIT_License)\n",
-  "readmeFilename": "README.md",
-  "_id": "generator-foundation-ext@0.0.1",
-  "_from": "/Users/james/_development/node_packages/generator-foundation-ext",
-  "dist": {
-    "shasum": "d0b42143b586e2d594817fd20379569dc1123315"
-  }
+  ]
 }
