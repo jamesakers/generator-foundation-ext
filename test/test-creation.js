@@ -27,7 +27,9 @@ describe('foundation-ext generator', function () {
     ];
 
     helpers.mockPrompt(this.app, {
-      'someOption': 'Y'
+      'someOption': 'Y',
+      'coffeeScript': 'Y',
+      'templateName': 'welcome'
     });
 
     this.app.run({}, function () {
