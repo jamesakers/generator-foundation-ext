@@ -1,7 +1,0 @@
-{
-  "name": "generator-foundation-ext",
-  "version": "0.1.0",
-  "devDependencies": {
-    "yeoman-generator": "~0.10.5"
-  }
-}
