@@ -2,32 +2,57 @@
 
 Author: James Akers
 
-> A Yeoman generator for Foundation v4 by Zurb that:
-- has a [CoffeeScript](http://coffeescript.org/) Gruntfile
-- allows bootstraping of [Foundation Templates](http://foundation.zurb.com/templates.php)
+## About
+This project is a Yeoman generator for [Foundation by Zurb (version 4)](http://foundation.zurb.com) that builds a skeleton app that is ready to run in the browser.
+
+## Features
+- is bootstraped with [CoffeeScript](http://coffeescript.org/), Gruntfile (default - optional)
+- includes [Foundation Templates](http://foundation.zurb.com/templates.php)
 - bower installation of Foundation
 - includes livereload, compass, watch
 - is `grunt build` ready right out of the box
 
-## Getting started
-- Make sure you have [yo](https://github.com/yeoman/yo) installed:
-    `npm install -g yo`
-- Install the generator: `npm install -g generator-foundation-ext`
-- Create your project: `mkdir [project name]`
-- Change directory: `cd [project name]`
-- Run: `yo foundation-ext`
+## Requirements
+###Node Packages:
 
-## Server
+- [Yo](https://github.com/yeoman/yo): `npm install -g yo`
+
+###Ruby Gems:
+
+- compass `[sudo] gem install compass`
+
+## Installation
+###Global
+- `npm install -g generator-foundation-ext`
+
+###Local
+- `mkdir [/some/directory]`
+- `cd [/some/directory]`
+- `npm install generator-foundation-ext`
+
+## Getting Started
+### Create a project
+* `mkdir /path/to/[project name]`
+* `cd /path/to/[project name]`
+* Run: `yo foundation-ext`
+* `> Enter site name:` [Site Name]
+* `> Gruntfile as CoffeeScript ☕ ?: (Y/n):`
+* `> Choose Foundation Template - [http://foundation.zurb.com/templates.php banded|banner|bare|blog|boxy|contact|feed|grid|marketing|orbit|realty|sidebar|store|welcome|workspace]: (welcome)`
+* Run: `grunt server`
+
+## Grunt Tasks
+### Server 
 - Run: `grunt server`
+- Defaultly runs with [livereload](http://livereload.com/) at `http://localhost:9000`
 
-## Build
-- Run: `grunt build` or just `grunt` aliased
+### Build
+- Run: `grunt build` or just `grunt`
+- Creates a minified ditributable project in the `dist` directory of your project
 
-## Todo:
-- Finish Documentation
+## Todo
+- Don't have bower import everything from Foundation repo
 - Allow previous versions of Foundation
-- Don't have bower import everything from foundation repo
-- Add additional generators
+- Add additional generators for add-ons
 
 ## License
-[MIT License](http://en.wikipedia.org/wiki/MIT_License)
+[BSD License](http://opensource.org/licenses/bsd-license.php)
