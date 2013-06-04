@@ -1,47 +1,48 @@
-// Global Foundation Settings
 @import "settings";
 
 // Comment out this import if you don't want to use normalize
-@import "normalize";
+@import "../components/foundation/scss/normalize";
+//@import "normalize";
 
 // Comment out this import if you are customizing you imports below
-@import "foundation";
+@import "../components/foundation/scss/foundation";
 
 // Import specific parts of Foundation by commenting the import "foundation"
 // and uncommenting what you want below. You must uncomment the following if customizing
 
-// @import "components/foundation/foundation/components/global"; // *always required
-// @import "components/foundation/foundation/components/grid";
-// @import "components/foundation/foundation/components/visibility";
-// @import "components/foundation/foundation/components/block-grid";
-// @import "components/foundation/foundation/components/type";
-// @import "components/foundation/foundation/components/buttons";
-// @import "components/foundation/foundation/components/forms"; // *requires components/buttons
-// @import "components/foundation/foundation/components/custom-forms"; // *requires components/buttons, components/forms
-// @import "components/foundation/foundation/components/button-groups"; // *requires components/buttons
-// @import "components/foundation/foundation/components/dropdown-buttons"; // *requires components/buttons
-// @import "components/foundation/foundation/components/split-buttons"; // *requires components/buttons
-// @import "components/foundation/foundation/components/flex-video";
-// @import "components/foundation/foundation/components/section";
-// @import "components/foundation/foundation/components/top-bar";  // *requires components/grid
-// @import "components/foundation/foundation/components/orbit";
-// @import "components/foundation/foundation/components/reveal";
-// @import "components/foundation/foundation/components/joyride";
-// @import "components/foundation/foundation/components/clearing";
-// @import "components/foundation/foundation/components/alert-boxes";
-// @import "components/foundation/foundation/components/breadcrumbs";
-// @import "components/foundation/foundation/components/keystrokes";
-// @import "components/foundation/foundation/components/labels";
-// @import "components/foundation/foundation/components/inline-lists";
-// @import "components/foundation/foundation/components/pagination";
-// @import "components/foundation/foundation/components/panels";
-// @import "components/foundation/foundation/components/pricing-tables";
-// @import "components/foundation/foundation/components/progress-bars";
-// @import "components/foundation/foundation/components/side-nav";
-// @import "components/foundation/foundation/components/sub-nav";
-// @import "components/foundation/foundation/components/switch";
-// @import "components/foundation/foundation/components/magellan";
-// @import "components/foundation/foundation/components/tables";
-// @import "components/foundation/foundation/components/thumbs";
-// @import "components/foundation/foundation/components/tooltips";
-// @import "components/foundation/foundation/components/dropdown";
+//@import "../components/foundation/scss/foundation/foundation-global"; // *always required
+//@import "../components/foundation/scss/foundation/components/global"; // *always required
+//@import "../components/foundation/scss/foundation/components/grid";
+//@import "../components/foundation/scss/foundation/components/visibility";
+//@import "../components/foundation/scss/foundation/components/block-grid";
+//@import "../components/foundation/scss/foundation/components/type";
+//@import "../components/foundation/scss/foundation/components/buttons";
+//@import "../components/foundation/scss/foundation/components/forms"; // *requires components/buttons
+//@import "../components/foundation/scss/foundation/components/custom-forms"; // *requires components/buttons, components/forms
+//@import "../components/foundation/scss/foundation/components/button-groups"; // *requires components/buttons
+//@import "../components/foundation/scss/foundation/components/dropdown-buttons"; // *requires components/buttons
+//@import "../components/foundation/scss/foundation/components/split-buttons"; // *requires components/buttons
+//@import "../components/foundation/scss/foundation/components/flex-video";
+//@import "../components/foundation/scss/foundation/components/section";
+//@import "../components/foundation/scss/foundation/components/top-bar";  // *requires components/grid
+//@import "../components/foundation/scss/foundation/components/orbit";
+//@import "../components/foundation/scss/foundation/components/reveal";
+//@import "../components/foundation/scss/foundation/components/joyride";
+//@import "../components/foundation/scss/foundation/components/clearing";
+//@import "../components/foundation/scss/foundation/components/alert-boxes";
+//@import "../components/foundation/scss/foundation/components/breadcrumbs";
+//@import "../components/foundation/scss/foundation/components/keystrokes";
+//@import "../components/foundation/scss/foundation/components/labels";
+//@import "../components/foundation/scss/foundation/components/inline-lists";
+//@import "../components/foundation/scss/foundation/components/pagination";
+//@import "../components/foundation/scss/foundation/components/panels";
+//@import "../components/foundation/scss/foundation/components/pricing-tables";
+//@import "../components/foundation/scss/foundation/components/progress-bars";
+//@import "../components/foundation/scss/foundation/components/side-nav";
+//@import "../components/foundation/scss/foundation/components/sub-nav";
+//@import "../components/foundation/scss/foundation/components/switch";
+//@import "../components/foundation/scss/foundation/components/magellan";
+//@import "../components/foundation/scss/foundation/components/tables";
+//@import "../components/foundation/scss/foundation/components/thumbs";
+//@import "../components/foundation/scss/foundation/components/tooltips";
+//@import "../components/foundation/scss/foundation/components/dropdown";
