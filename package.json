@@ -24,8 +24,10 @@
     "url": "https://github.com/jamesakers/generator-foundation-ext.git"
   },
   "scripts": {
-    "yeoman-generator": "~0.10.2",
     "test": "mocha"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.10.2"
   },
   "devDependencies": {
     "mocha": "~1.9.0"
