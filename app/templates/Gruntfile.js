@@ -110,7 +110,6 @@
       },
       compass: {
         options: {
-          require: 'zurb-foundation',
           sassDir: '<%%= yeoman.app %>/sass',
           cssDir: '.tmp/css',
           javascriptsDir: '<%%= yeoman.app %>/js',
