@@ -6,7 +6,7 @@ Author: James Akers
 This project is a Yeoman generator for [Foundation by Zurb (version 4)](http://foundation.zurb.com) that builds a skeleton app that is ready to run in the browser.
 
 ## Features
-- is bootstraped with [CoffeeScript](http://coffeescript.org/), Gruntfile (default - optional)
+- is bootstrapped with [CoffeeScript](http://coffeescript.org/), Gruntfile (default - optional)
 - includes [Foundation Templates](http://foundation.zurb.com/templates.php)
 - bower installation of Foundation
 - includes livereload, compass, watch
