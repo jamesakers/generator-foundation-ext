@@ -1,6 +1,6 @@
 {
   "name": "generator-foundation-ext",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Zurb Foundation v4 generator that bootstraps default themes, is build ready out of the box, and has a CoffeeScript Gruntfile.",
   "keywords": [
     "foundation",
