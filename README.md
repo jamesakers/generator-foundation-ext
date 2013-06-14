@@ -9,7 +9,7 @@ This project is a Yeoman generator for [Foundation by Zurb (version 4)](http://f
 - is bootstrapped with [CoffeeScript](http://coffeescript.org/), Gruntfile (default - optional)
 - includes [Foundation Templates](http://foundation.zurb.com/templates.php)
 - bower installation of Foundation
-- includes livereload, compass, watch
+- includes coffeescript, livereload, compass, watch
 - is `grunt build` ready right out of the box
 
 ## Requirements
