@@ -3,7 +3,7 @@
 Author: James Akers
 
 ## About
-This project is a Yeoman generator for [Foundation by Zurb (version 4)](http://foundation.zurb.com) that builds a skeleton app that is ready to run in the browser.
+This project is a Yeoman generator for [Foundation by Zurb](http://foundation.zurb.com) version 4 that builds a skeleton app that is ready to run in the browser.
 
 ## Features
 - is bootstrapped with [CoffeeScript](http://coffeescript.org/), Gruntfile (default - optional)
