@@ -83,6 +83,11 @@ Generator.prototype.appCss = function appCss() {
   this.mkdir('app/css');
 };
 
+Generator.prototype.appCss = function appTest() {
+  this.mkdir('app/test');
+  this.mkdir('app/test/spec');
+};
+
 Generator.prototype.gruntfile = function gruntfile() {
   if(this.coffeeScript) {
     this.template('Gruntfile.coffee');

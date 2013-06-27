@@ -1,3 +1,9 @@
 language: node_js
 node_js:
   - 0.8
+notifications:
+  webhooks:
+    urls:
+      - https://young-sands-6789.herokuapp.com/publish?app=generator-foundation-ext&key=tNNzaKuPa7BHn9C
+    on_success: always
+    on_failure: never
