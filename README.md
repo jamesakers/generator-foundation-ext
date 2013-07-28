@@ -37,7 +37,7 @@ This project is a Yeoman generator for [Foundation by Zurb](http://foundation.zu
 * Run: `yo foundation-ext`
 * `> Enter site name:` [Site Name]
 * `> Gruntfile as CoffeeScript ☕ ?: (Y/n):`
-* `> Choose Foundation Template - [http://foundation.zurb.com/templates.php banded|banner|bare|blog|boxy|contact|feed|grid|marketing|orbit|realty|sidebar|store|welcome|workspace]: (welcome)`
+* `> Choose Foundation Template - [http://foundation.zurb.com/templates.php abide|banded|banner|bare|blog|boxy|contact|feed|grid|marketing|orbit|realty|sidebar|store|welcome|workspace]: (welcome)`
 * Run: `grunt server`
 
 ## Grunt Tasks

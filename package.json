@@ -1,9 +1,10 @@
 {
   "name": "generator-foundation-ext",
-  "version": "0.2.0",
-  "description": "Zurb Foundation v4 generator that bootstraps default themes, is build ready out of the box, and has a CoffeeScript Gruntfile.",
+  "version": "0.2.1",
+  "description": "Zurb Foundation 4.3 generator that bootstraps default themes, is build ready out of the box, and has a CoffeeScript Gruntfile.",
   "keywords": [
     "foundation",
+    "4.3",
     "yeoman-generator",
     "scaffold",
     "framework",

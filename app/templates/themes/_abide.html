@@ -1,18 +1,177 @@
-<form data-abide>
-  <div class="name-field">
-    <label>Your name <small>required</small></label>
-    <input type="number" required pattern="[a-zA-Z]+">
-    <small class="error">Name is required and must be a string.</small>
+  <div class="row">
+    <div class="large-12 columns">
+      <h2>Abide</h2>
+      <h4 class="subheader">Abide is an HTML5 form validation library that supports the native API by using patterns and required attributes.</h4>
+      <form class="custom" data-abide="" novalidate="novalidate">
+        <fieldset>
+          <legend>Fieldset</legend>
+          <div class="row">
+            <div class="large-12 columns error">
+              <label for="password">Password <small>required</small></label>
+              <input type="password" id="password" placeholder="LittleW0men." name="password" required="" data-invalid="">
+              <small class="error" data-error-message="">Passwords must be at least 8 characters with 1 capital letter, 1 number, and one special character.</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" placeholder="1 234-567-8910">
+              <small class="error" data-error-message="">Please enter a properly formatted telephone number.</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-4 columns">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="foundation@zurb.com">
+              <small class="error">Valid email required.</small>
+            </div>
+            <div class="large-4 columns error">
+              <label for="url">URL <small>required</small></label>
+              <input type="url" id="url" placeholder="http://zurb.com" required="" data-invalid="">
+              <small class="error" data-error-message="">Valid URL required.</small>
+            </div>
+            <div class="large-4 columns">
+              <div class="row collapse error">
+                <label for="customDropdown1">Hardest to find in grocery <small>required</small></label>
+                <select id="customDropdown1" class="medium hidden-field" required="" data-id="1375017192867-S7TCy" data-invalid="">
+                  <option value="">Select grocery item</option>
+                  <option value="first">Green Chilies</option>
+                  <option value="second">Raisins</option>
+                  <option value="third">Panko bread crumbs</option>
+                  <option value="fourth">Assistance</option>
+                </select><div class="custom dropdown medium" data-id="1375017192867-S7TCy"><a href="#" class="current">Select grocery item</a><a href="#" class="selector"></a><ul><li class="selected">Select grocery item</li><li class="">Green Chilies</li><li class="">Raisins</li><li class="">Panko bread crumbs</li><li class="">Assistance</li></ul></div>
+                <small class="error" data-error-message="">Broke.</small>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <hr>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="large-6 columns">
+              <label for="radio1" class=""><input name="radio1" type="radio" id="radio1" required="" class="hidden-field"><span class="custom radio"></span> Radio Button 1</label>
+              <label for="radio1" class=""><input name="radio1" type="radio" id="radio1" required="" class="hidden-field"><span class="custom radio checked"></span> Radio Button 2</label>
+              <label for="radio1" class=""><input name="radio1" type="radio" id="radio1" required="" class="hidden-field"><span class="custom radio"></span> Radio Button 3</label>
+            </div>
+            <div class="large-6 columns">
+              <label for="checkbox1" class=""><input type="checkbox" id="checkbox1" style="display: none;" required="" class="hidden-field"><span class="custom checkbox"></span> Label for Checkbox</label>
+              <label for="checkbox2" class=""><input type="checkbox" id="checkbox2" checked="" style="display: none;" required="" class="hidden-field"><span class="custom checkbox checked"></span> Label for Checkbox</label>
+              <label for="checkbox3" class=""><input type="checkbox" checked="" id="checkbox3" style="display: none;" required="" class="hidden-field"><span class="custom checkbox checked"></span> Label for Checkbox</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="large-12 columns">
+              <hr>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="large-12 columns">
+              <label for="remarks">Closing Remarks</label>
+              <textarea id="remarks" name="remarks" placeholder="Leave your remarks here."></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="large-12 columns">
+              <button type="submit" class="medium button green">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
   </div>
-  <div class="email-field">
-    <label>Email <small>required</small></label>
-    <input type="text" required pattern="email">
-    <small class="error">An email address is required.</small>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <hr>
+    </div>
   </div>
-  <div class="password-field">
-    <label>Email <small>required</small></label>
-    <input type="password" required>
-    <small class="error">A valid password is required.</small>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <h4>Predefined patterns</h4>
+      <p>
+        For the full documentation visit Foundation's <a title="http://foundation.zurb.com/docs/components/abide.html" href="http://foundation.zurb.com/docs/components/abide.html" target="_blank">Abide Page</a>.
+      </p>
+      <p>Abide has several patterns common validation patterns built into the library:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Valid Example or Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>alpha</td>
+            <td>Foundation</td>
+          </tr>
+          <tr>
+            <td>alpha_numeric</td>
+            <td>A1 Sauce</td>
+          </tr>
+          <tr>
+            <td>integer</td>
+            <td>-1</td>
+          </tr>
+          <tr>
+            <td>number</td>
+            <td>2937</td>
+          </tr>
+          <tr>
+            <td>password</td>
+            <td>LittleW0men.</td>
+          </tr>
+          <tr>
+            <td>card</td>
+            <td>visa, amex, mastercard</td>
+          </tr>
+          <tr>
+            <td>cvv</td>
+            <td>384 or 3284</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>foundation@zurb.com</td>
+          </tr>
+          <tr>
+            <td>url</td>
+            <td>http://zurb.com</td>
+          </tr>
+          <tr>
+            <td>domain</td>
+            <td>zurb.com</td>
+          </tr>
+          <tr>
+            <td>datetime</td>
+            <td>YYYY-MM-DDThh:mm:ssTZD</td>
+          </tr>
+          <tr>
+            <td>date</td>
+            <td>YYYY-MM-DD</td>
+          </tr>
+          <tr>
+            <td>time</td>
+            <td>HH:MM:SS</td>
+          </tr>
+          <tr>
+            <td>dateISO</td>
+            <td>not sure yet</td>
+          </tr>
+          <tr>
+            <td>month_day_year</td>
+            <td>MM/DD/YYYY</td>
+          </tr>
+          <tr>
+            <td>color</td>
+            <td>#FFF or #FFFFFF</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <button type="submit">Submit</button>
-</form>
