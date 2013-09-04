@@ -2,6 +2,7 @@
 var util   = require('util');
 var path   = require('path');
 var fs     = require('fs');
+var colors = require('colors');
 var yeoman = require('yeoman-generator');
 
 var Generator = module.exports = function Generator(args, options, config) {
