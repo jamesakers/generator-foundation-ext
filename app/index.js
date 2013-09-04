@@ -53,10 +53,7 @@ Generator.prototype.askFor = function askFor() {
     default: 'welcome'
   }];
 
-  this.prompt(prompts, function (err, props) {
-    if (err) {
-      return this.emit('error', err);
-    }
+  this.prompt(prompts, function (props) {
     this.siteName = props.siteName ;
     this.coffeeScript = (/y/i).test(props.coffeeScript);
     this.templateName = props.templateName;

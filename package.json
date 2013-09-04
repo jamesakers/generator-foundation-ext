@@ -1,17 +1,17 @@
 {
   "name": "generator-foundation-ext",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Zurb Foundation 4.3 generator that bootstraps default themes, is build ready out of the box, and has a CoffeeScript Gruntfile.",
   "keywords": [
+    "zurb",
     "foundation",
     "4.3",
-    "yeoman-generator",
+    "yeoman",
+    "generator",
     "scaffold",
     "framework",
     "coffeescript",
-    "front-end",
-    "app",
-    "zurb"
+    "app"
   ],
   "homepage": "https://github.com/jamesakers/generator-foundation-ext",
   "bugs": "https://github.com/jamesakers/generator-foundation-ext/issues",
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "yeoman-generator": "~0.13.4",
+    "bower": "~1.2.6",
     "colors": "~0.6.2"
   },
   "devDependencies": {
